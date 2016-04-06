@@ -38,7 +38,7 @@ module.exports = {
             jQuery: "jquery"
         }),
         new webpack.DefinePlugin({
-            'API_ROOT': JSON.stringify(process.env.API_ROOT || 'https://samplr-api-dev.herokuapp.com')
+            'API_ROOT': JSON.stringify(process.env.API_ROOT || 'http://ec2-54-187-87-240.us-west-2.compute.amazonaws.com:3000')
         })
     ],
     module: {
@@ -79,6 +79,7 @@ module.exports = {
     devServer: {
         contentBase: 'dist',
         historyApiFallback: true,
-        port: 2000
+        port: 3000,
+	host: 'ec2-54-201-142-230.us-west-2.compute.amazonaws.com'
     }
 }

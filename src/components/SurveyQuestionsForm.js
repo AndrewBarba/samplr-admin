@@ -6,6 +6,7 @@ import {reduxForm} from 'redux-form';
 
 const formFields = [
     'title',
+    'questionType',
     'responses[].responseTitle',
     'responses[].responseValue'
 ]
@@ -36,17 +37,19 @@ class SurveyQuestionsForm extends Component {
 
         const question = {
             title: this.props.fields.title.value,
+	    questionType: this.props.fields.questionType.value,
             responses,
             surveyId: this.props.surveyId
         }
 
         this.props.addSurveyQuestion(question);
+	document.getElementById("questionType").value="select";
         this.props.resetForm();
     }
 
     render() {
         const {
-            fields: { title, responses },
+            fields: { title, questionType, responses },
             submitting,
             addSurveyQuestionsForm: { isLoading }
         } = this.props;
@@ -66,6 +69,17 @@ class SurveyQuestionsForm extends Component {
                         {...title}/>
 
                 </div>
+		<div>
+		    <label htmlFor="questionType">
+			Question type
+		    </label>
+		    <select id ="questionType" className="form-control" {...questionType}>
+		    	<option value={"select"} >Select</option>
+            		<option value={"checkbox"}>Checkbox</option>
+            		<option value={"radiobutton"}>Radiobutton</option>
+		    </select>
+
+    		</div>
 
                 <b>Responses</b><br />
                 <Well>
